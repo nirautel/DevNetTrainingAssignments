@@ -1,24 +1,16 @@
-import re
 import json
-import yaml
-import xml.etree.ElementTree as ET
 
-
-file_json = open('data/dnac_devices.json')
+#opening the json file
+file_json = open('dnac_devices.json')
 json_data = json.load(file_json)
 
-#print(json_data)
-
-
-for item in json_data:
-    for child in json_data[item]:
-        print("Device_Name---"+str(child["type"]))
-        print("ID---" + str(child["id"]))
-        print("family---" + str(child["family"]))
-        print("SOFTWARE---" + str(child["softwareType"]))
-        print("IP---" + str(child["managementIpAddress"]))
-
-
+#parsing the data for the required attributes
+for line in json_data['response']:
+    print('Item ID :   '+line["id"])
+    print('Item TYPE :   '+line["type"])
+    print('Item FAMILY :   '+line["family"])
+    print('Item SOFTWARE :   '+line["softwareType"])
+    print('Item IP :   '+line["managementIpAddress"])
 
 
 file_json.close()
